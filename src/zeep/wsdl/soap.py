@@ -148,9 +148,9 @@ class SoapBinding(Binding):
         root = message_parts[0]
         assert root.get_content_type() == "application/xop+xml"
         # startwith (not equals) because it might be "application/soap+xml; charset=utf-8" or similar
-        assert root.get_param("type").startswith("application/soap+xml")
-        assert all(not message.is_multipart() for message in message_parts[1:])
-        assert all(message["Content-ID"] for message in message_parts[1:])
+        #assert root.get_param("type").startswith("application/soap+xml")
+        #assert all(not message.is_multipart() for message in message_parts[1:])
+        #assert all(message["Content-ID"] for message in message_parts[1:])
         operation.xop_replaced_data_by_cid = {message["Content-ID"]: message.get_payload(decode=True) for message in message_parts[1:]}
         return root.get_payload(decode=True)
 
